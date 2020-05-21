@@ -40,13 +40,14 @@ syn region ps1Comment start="<#" end="#>" contains=ps1CommentTodo,ps1CommentDoc,
 " Language keywords and elements
 syn keyword ps1Conditional if else elseif switch default
 syn keyword ps1Repeat while for do until break continue foreach in
+syn keyword ps1Pester Describe Context It Should BeforeAll AfterAll BeforeEach AfterEach Mock
 syn match ps1Repeat /\<foreach\>/ nextgroup=ps1Block skipwhite
 syn match ps1Keyword /\<while\>/ nextgroup=ps1Block skipwhite
 syn match ps1Keyword /\<where\>/ nextgroup=ps1Block skipwhite
 
 syn keyword ps1Exception begin process end exit inlinescript parallel sequence
 syn keyword ps1Keyword try catch finally throw
-syn keyword ps1Keyword return filter in trap param data dynamicparam 
+syn keyword ps1Keyword return filter in trap param data dynamicparam
 syn keyword ps1Constant $true $false $null
 syn match ps1Constant +\$?+
 syn match ps1Constant +\$_+
@@ -92,6 +93,9 @@ syn keyword ps1Operator -in -notin
 syn keyword ps1Operator -is -isnot -as -join
 syn keyword ps1Operator -and -or -not -xor -band -bor -bnot -bxor
 syn keyword ps1Operator -f
+syn keyword ps1PesterOperator -Be -BeExactly -BeGreaterThan -BeGreaterOrEqual -BeIn -BeLessThan -BeLessOrEqual -BeLike -BeLikeExactly
+syn keyword ps1PesterOperator -BeOfType -BeTrue -BeFalse -HaveCount -Contain -Exist -FileContentMatch -FileContentMatchExactly
+syn keyword ps1PesterOperator -FileContentMatchMultiline -Match -MatchExactly -Throw -BeNullOrEmpty -Not
 syn match ps1Operator /!/
 syn match ps1Operator /=/
 syn match ps1Operator /+=/
@@ -186,9 +190,11 @@ if version >= 508 || !exists("did_ps1_syn_inits")
 	HiLink ps1CommentDoc Tag
 	HiLink ps1CDocParam Identifier
 	HiLink ps1Operator Operator
+	HiLink ps1PesterOperator Underlined
 	HiLink ps1Repeat Repeat
 	HiLink ps1RepeatAndCmdlet Repeat
 	HiLink ps1Keyword Keyword
+	HiLink ps1Pester Keyword
 	HiLink ps1KeywordAndCmdlet Keyword
 	HiLink ps1Label Label
 	delcommand HiLink
